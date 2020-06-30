@@ -14,7 +14,7 @@ public class EventData {
     }
 
     public static Event getById(int id){
-        return.events.get(id);
+        return events.get(id);
     }
 
     public static Collection<Event> getAll(){

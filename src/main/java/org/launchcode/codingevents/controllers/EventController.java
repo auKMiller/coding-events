@@ -2,6 +2,7 @@ package org.launchcode.codingevents.controllers;
 
 import org.launchcode.codingevents.data.EventData;
 import org.launchcode.codingevents.models.Event;
+import org.launchcode.codingevents.models.EventType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -29,6 +30,7 @@ public class EventController {
     public String displayCreateEventForm(Model model) {
         model.addAttribute("title", "Create Event");
         model.addAttribute(new Event());
+        model.addAttribute("types", EventType.values());
         return "events/create";
     }
 
@@ -44,10 +46,10 @@ public class EventController {
     }
 
     // lives at /events/create
-    @GetMapping("create")
-    public String renderCreateEventForm(){
-        return "events/create";
-    }
+//    @GetMapping("create")
+//    public String renderCreateEventForm(){
+//        return "events/create";
+//    }
 
     @GetMapping("delete")
     public String displayDeleteEventForm(Model model){
@@ -58,7 +60,7 @@ public class EventController {
 
     @PostMapping("delete")
     public String processDeleteEventsForm(@RequestParam(required = false) int[] eventIds){
-        if(EventIds != null) {
+        if(eventIds != null) {
             for (int id : eventIds) {
                 EventData.remove(id);
             }
